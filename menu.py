@@ -9,11 +9,7 @@ from schreiben_lesen import *
 from plotten import * 
 from abgleich_pressure import *
 from igor_steuern import *
-<<<<<<< HEAD
-#from flugplot import *
-=======
 from flugplot import *
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 from plot_bearbeitung import *
 
 
@@ -180,48 +176,15 @@ def check_all(liste):
 def uncheck_all(liste):
 	for i in range(len(liste)):
 		liste[i].set(0)
-<<<<<<< HEAD
-
-def kampagnen_update(kampagne_file):
-	global kampagne,root2
-	kampagne=kampagne_lesen(kampagne_file)
-	hauptmenu()
-
-def hauptmenu(pfad="../messung"):
-	global root,checks,auswahl,kampagne
-=======
 		
 def hauptmenu(pfad="../messung"):
 	global root,checks,auswahl
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	try: root.destroy()
 	except NameError,TclError: pass
 	root = tk.Tk()
 	root.geometry('1000x800+800+400')
 	root.grid()
 	root.title("Hauptmenu")
-<<<<<<< HEAD
-
-	kampagnen=[]
-	path=os.path.expanduser('speicher/')
-	for file in sorted(os.listdir(path)):
-		if os.path.splitext(file)[0].split('_')[0] == "kampagne":
-			kampagnen.append(os.path.join(path,file))
-	path=os.path.expanduser('../')
-
-	try:	kampagnen_menu=tk.Menubutton(root, width=20,text=kampagne.name, underline=0)
-	except:	kampagnen_menu=tk.Menubutton(root, width=20,text="...", underline=0)
-
-	kampagnen_menu.grid(row=1,column=9)
-	tk.Label(root,text="Kampagne:").grid(row=1,column=8)
-	kampagnen_menu.menu = tk.Menu(kampagnen_menu)
-	for i in range(len(kampagnen)):
-		kampagnen_menu.menu.add_command(label=kampagnen[i],command=lambda kamp=i:kampagnen_update(kampagnen[kamp]))
-	kampagnen_menu['menu'] = kampagnen_menu.menu	
-
-
-=======
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	plo_list=[]
 	for i in range(len(plots)):
 		plo_list.append([])
@@ -288,10 +251,6 @@ def hauptmenu(pfad="../messung"):
 	root.mainloop()
 
 def vorbereitung(pfad,schreiben,ploop):
-<<<<<<< HEAD
-	global kampagne
-=======
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	datum_list=[]
 	for i in range(len(checks)):
 		if checks[i].get()==1:datum_list.append(sorted(list(set(auswahl)))[i])
@@ -299,11 +258,7 @@ def vorbereitung(pfad,schreiben,ploop):
 	for k in range(len(schreiben)):
 		if isinstance(schreiben[k],int)==False:schreiben[k]=schreiben[k].get()
 	if sum(schreiben)>0:
-<<<<<<< HEAD
-		einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,schreiben,kampagne)
-=======
 		einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,schreiben)
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	for j in range(len(ploop)-2):
 		if ploop[j].get()==1: plotten(datum_list,plots[j],spuren)
 	if ploop[j+1].get()==1: abgleich_pressure(datum_list)
@@ -311,17 +266,8 @@ def vorbereitung(pfad,schreiben,ploop):
 	hauptmenu()
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 marker_list=['o','s','v','<','>']
 spuren=spuren_lesen('speicher/spuren_info.txt')
 plots=plots_lesen()
 sp2_timeshift,sp1a_timeshift=timeshifts_lesen('speicher/timeshifts.txt')
-<<<<<<< HEAD
-#kampagne=kampagne_lesen('speicher/kampagne_sommer_2014.txt')
-
-=======
->>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 hauptmenu()
