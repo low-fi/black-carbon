@@ -1,21 +1,6 @@
 import numpy as np
 import os, sys, subprocess, ConfigParser,time, string
 
-class kampagne_einstellung(object):
-	class_typ="Kampagneneinstellung"
-	def __init__(self,config):
-		self.name = config[0]
-		self.flugzeiten = config[1].split("\t")[-1]
-		self.icartt_sp2 = config[2].split("\t")[-1]
-		self.icartt_sp1a = config[3].split("\t")[-1]
-
-def kampagne_lesen(filename):
-	config_dat=open(filename,"r").read().split("\n")
-	kampagne=kampagne_einstellung(config_dat)
-	return kampagne
-
-
-
 class plot(object):
 	class_typ="Plot Einstellungen"
 	def __init__(self,pfad,x,subis):
@@ -27,7 +12,7 @@ class plot(object):
 		self.gemeinsame_achse = x[4]
 		self.name = x[5]
 		self.sub = subis
-		
+
 class subplot(object):
 	class_typ="Subplot Einstellung"
 	def __init__(self,i):
@@ -38,7 +23,7 @@ class subplot(object):
 			self.traces.append(int(ee.split('\n')[i].split(';')[2].split(',')[j]))
 		self.plottyp=ee.split('\n')[i].split(';')[3]
 		self.gegen=int(float(ee.split('\n')[i].split(';')[4]))
-		
+
 		self.xlabel = ee.split('\n')[i].split(';')[5].lower()
 		self.xlabel_pos = ee.split('\n')[i].split(';')[6].lower()
 		self.xoption = ee.split('\n')[i].split(';')[7]
@@ -47,28 +32,28 @@ class subplot(object):
 		self.ylabel = ee.split('\n')[i].split(';')[10].lower()
 		self.ylabel_pos = ee.split('\n')[i].split(';')[11].lower()
 		self.yoption = ee.split('\n')[i].split(';')[12]
-		self.ylow = int(float(ee.split('\n')[i].split(';')[13]))
-		self.yhigh = int(float(ee.split('\n')[i].split(';')[14]))
+		self.ylow = float(ee.split('\n')[i].split(';')[13])
+		self.yhigh = float(ee.split('\n')[i].split(';')[14])
 		self.legcol = int(float(ee.split('\n')[i].split(';')[15]))
 
 #fuer jede Plot-Vorlage gibt es eine Datei im Speicher
 #Informationen werden aus Plot_vorlage gelesen und in ein "Plot-Objekt" geschrieben
 #Die "Plot-Objekte" werden in einer Liste gesammelt
 # Die Attribute eines "Plot-Objekts" beinhalten die Informationen zum plotten der Vorlage
-		
+
 def plots_lesen():
 	global ee
 	plots=[]
 	path=os.path.expanduser('./speicher/')
 	for h in range(len(os.listdir(path))-1):
-		if os.listdir(path)[h].split('_')[0]=='plot' and os.listdir(path)[h].split('.')[1]!='txt~': 
+		if os.listdir(path)[h].split('_')[0]=='plot' and os.listdir(path)[h].split('.')[1]!='txt~':
 			ee=open(string.join(['./speicher/',os.listdir(path)[h]],''),"r").read()
 			ppll=[]
 			for i in range(1,len(ee.split('\n'))-1,1):
 				ppll.append(subplot(i))
 			plots.append(plot('./speicher/',ee.split('\n')[0].split(';'),ppll))
 	return plots
-	
+
 def plots_schreiben(plots):
 	for h in range(len(plots)):
 		ww=open(string.join([plots[h].path,'plot_',plots[h].name,'.txt'],''),"w")
@@ -85,7 +70,7 @@ def plots_schreiben(plots):
 			ww.write(str(plots[h].sub[j].position[1]))	;ww.write(';')
 			ww.write('traces')	;ww.write(';')
 			for i in range(len(plots[h].sub[j].traces)):
-				ww.write(str(plots[h].sub[j].traces[i]))	
+				ww.write(str(plots[h].sub[j].traces[i]))
 				if i == len(plots[h].sub[j].traces)-1:ww.write(';')
 				else:ww.write(',')
 			ww.write(plots[h].sub[j].plottyp)	;ww.write(';')
@@ -97,7 +82,7 @@ def plots_schreiben(plots):
 			ww.write(str(plots[h].sub[j].xhigh))	;ww.write(';')
 
 			ww.write(plots[h].sub[j].ylabel)	;ww.write(';')
-			ww.write(plots[h].sub[j].ylabel_pos)	;ww.write(';')			
+			ww.write(plots[h].sub[j].ylabel_pos)	;ww.write(';')
 			ww.write(plots[h].sub[j].yoption)	;ww.write(';')
 			ww.write(str(plots[h].sub[j].ylow))	;ww.write(';')
 			ww.write(str(plots[h].sub[j].yhigh))	;ww.write(';')
@@ -116,7 +101,7 @@ class trace(object):
 		self.label_orig = oo.split('\n')[i].split(";")[1]
 		self.label = oo.split('\n')[i].split(";")[2]
 		self.farbe = oo.split('\n')[i].split(";")[5]
-		self.marker = oo.split('\n')[i].split(";")[4]	
+		self.marker = oo.split('\n')[i].split(";")[4]
 		self.typ = oo.split('\n')[i].split(";")[6]
 
 def spuren_lesen(pfad):
@@ -152,7 +137,7 @@ def nans(i,j):
 def mittelung(data,gemittelt):
 	reihe = nans(int(len(data)/gemittelt),1)
 	for j in range(len(reihe)):
-		if (j+1)*gemittelt < data.shape[0]: 
+		if (j+1)*gemittelt < data.shape[0]:
 			a=data[j*gemittelt:(j+1)*gemittelt]
 			if np.isnan(a[a.argsort()][0])==True:    #wenn nur nans vorhanden
 				reihe[j]=np.nan

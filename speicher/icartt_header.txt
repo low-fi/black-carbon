@@ -17,7 +17,7 @@ Altitude, m
 Temperature Riosemont, deg C
 Relative Humidity, 0-1
 Chamber Pressure, hPa
-BC Mass Concentration, mug/cm3
+BC Mass Concentration, mug/m3
 Scattering Particle Numb Concentration, #/cm3
 BC Numb Concentration, #/cm3
 AOD 499,5 nm, 0-1

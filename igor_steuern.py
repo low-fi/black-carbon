@@ -7,11 +7,11 @@ import warnings
 warnings.simplefilter("error")
 
 def igor_steuern(datum):
-	pfad="../../igor/procedures"
+	pfad="/Applications/Igor Pro 6.3/User Procedures"
 	igor_alt=open(pfad+'/einlesen_sicherung.ipf','r').read().split('\n')
 	igor_neu=open(pfad+'/einlesen.ipf','w')
 
-	pfad="../../igor/messung"
+	pfad="/Volumes/HSCHULZ_data_backup/SP2_NETCARE14/"
 
 	ordner_list=[]
 	index_list=[]
@@ -30,8 +30,13 @@ def igor_steuern(datum):
 		igor_alt[31+4*j]=string.join(['strconstant indices%d="'%(j+1),string.join(indices,';'),'"'],'')
 		igor_alt[32+4*j]='constant anzahl%d=%d'%(j+1,len(indices))
 	igor_alt[43]='constant ordner_anzahl=%d'%(len(ordner_list))
-	igor_alt[28]=string.join(['strconstant hk_ordner="root:',"'",hk_file.split('.')[0],"_HK'",'"'],'')
+	igor_alt[28]=string.join(['strconstant hk_ordner="root:',"'",hk_file.split('.')[0],"-HK'",'"'],'')
 	igor_alt[47]="string hk_file=quelle_linux+ordner1+"+'"'+hk_file+'"'
 	for line in igor_alt:
 		igor_neu.write(line+'\n')
 	igor_neu.close()
+	print datum
+	print pfad
+	print indices
+
+igor_steuern("20140720")
