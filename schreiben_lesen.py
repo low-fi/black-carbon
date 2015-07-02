@@ -4,19 +4,32 @@ import Tkinter as tk
 import os, sys, subprocess, ConfigParser,time, string
 import numpy as np
 import scipy as scipy
+<<<<<<< HEAD
 import datetime 
+=======
+import datetime
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 import itertools
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from scipy.io import netcdf
 
+<<<<<<< HEAD
 from funktionen import * 
+=======
+from funktionen import *
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 
 conv = lambda valstr: float(valstr.decode("utf-8").replace(',','.'))
 c8 = {0:conv, 1:conv, 2:conv, 3:conv, 4:conv, 5:conv, 6:conv, 7:conv }
 c2 = {0:conv, 1:conv }
+<<<<<<< HEAD
 	
 def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne):
+=======
+
+def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var):
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	#datum_list = list of dates in string format as '20140708'
 	#pfad = string of path where measurement data is located
 	#sp2_timeshift = integer of seconds that sp2 measurements have to be shifted in order to synchronize
@@ -34,24 +47,42 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 			labels=["HK","BC","sp1a","Wetter","AIMMS"]										# fuer Ueberschriften in Logdatei
 			name_list=[hk_list,bc_list,sp1a_list,wetter_list,aimms_list]  # Dateinamen fuer Logdatei
 			datas=[hkdata,bcdata,sp1adata,wetterdata,aimmsdata]						# Messdaten, wobei bcdata die Liste der BC-Data Datein eines Datums ist
+<<<<<<< HEAD
 			time_trace=[]																									# Nummer der Zeitspalte in der Originaldatei							
 			traces=[]																											# relevante Spaltennummern in Originaldatei
 			position=[]																										# Spaltennummer, ab der in die erstellte Matrix geschrieben wird					
+=======
+			time_trace=[]																									# Nummer der Zeitspalte in der Originaldatei
+			traces=[]																											# relevante Spaltennummern in Originaldatei
+			position=[]																										# Spaltennummer, ab der in die erstellte Matrix geschrieben wird
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	# Spaltennummern in der End-Datei:	 0-time in seconds of day, 1-leer
 	# ------------------------- HK-Data
 	#	0-pressure
 			traces.append([1,0])
 			position.append(1)
+<<<<<<< HEAD
 	# ------------------------- BC-Data 
+=======
+	# ------------------------- BC-Data
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	# 0-TimeBdr	1-TotTrig_NumbConc	2-BBHG_NumbConc	3-BBHG_MassConc	4-BBLG_NumbConc	5-BBLG_MassConc	6-BHBL_NumbConc	7-BHBL_MassConc	8-NBHG_NumbConc	9-NBHG_MassConc	10,NBLG_NumbConc	11-NBLG_MassConc	12-BBHGorSCHG_NumbConc	13-SCHGnotBBHG_NumbConc
 			traces.append([0,1,2,3,4,5,6,7,8,9,10,11,12,13])
 			position.append(2)
 	# ------------------------- SP1A-Data
+<<<<<<< HEAD
 	# 7-time,	11-altitude,	9-geo breite,	10-geo laenge,	27-alpha,	28-beta, 39-AOD367.0,	48-AOD391.9,	57-AOD413.7,	66-AOD499.5,	75-AOD610.5,	84-AOD675.0,	93-AOD779.3,	102-AOD861.3,	111-AOD946.4,	120-AOD1026.2	
 			traces.append([7,11,9,10,27,28,39,48,57,66,75,84,93,102,111,120])
 			position.append(15)
 	# ------------------------- Wetter
 	# /!\ 2->Time,	3-TempRiosemount, 41-TempHumicap, 18-GroundSpeed, 35-TrueAirSpeed, 7-Altitude, 45-GPSAltitude, 40-RelHumidity, -6-Geobreite, -5-GeoLaenge		
+=======
+	# 7-time,	11-altitude,	9-geo breite,	10-geo laenge,	27-alpha,	28-beta, 39-AOD367.0,	48-AOD391.9,	57-AOD413.7,	66-AOD499.5,	75-AOD610.5,	84-AOD675.0,	93-AOD779.3,	102-AOD861.3,	111-AOD946.4,	120-AOD1026.2
+			traces.append([7,11,9,10,27,28,39,48,57,66,75,84,93,102,111,120])
+			position.append(15)
+	# ------------------------- Wetter
+	# /!\ 2->Time,	3-TempRiosemount, 41-TempHumicap, 18-GroundSpeed, 35-TrueAirSpeed, 7-Altitude, 45-GPSAltitude, 40-RelHumidity, -6-Geobreite, -5-GeoLaenge
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 			traces.append([2,3,41,18,35,7,45,40,-6,-5])			#zeit ist eigentlich spalte 1 und wird umgerechnet eingefuegt (spalte 2 ist unwichtig)
 			position.append(30)
 	#-------------------------- AIMMS
@@ -59,7 +90,11 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 			traces.append([0,2,3,4,5,6,7,8,9])
 			position.append(39)
 
+<<<<<<< HEAD
 	# --------------------------------------------- 		a)	--------------------------------------------	
+=======
+	# --------------------------------------------- 		a)	--------------------------------------------
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 			path=os.path.expanduser(pfad)
 			# sucht in gewaehlten Ordner nach Dateien, die das gewuenschte Datum enthalten
 			# falls das Datum passt wird anhand des Dateinamens das Messgeraet bestimmt
@@ -74,7 +109,11 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 								wetterzeit=np.genfromtxt(os.path.join(path,file),dtype='str',skip_header=0,delimiter='\t')
 								for j in range(wetterzeit.shape[0]):
 									zeit_zw=wetterzeit[j,0].split(' ')[1].split(':')
+<<<<<<< HEAD
 									data_zw[j,0] =float(zeit_zw[0])*60*60 + float(zeit_zw[1])*60 + float(zeit_zw[2])  
+=======
+									data_zw[j,0] =float(zeit_zw[0])*60*60 + float(zeit_zw[1])*60 + float(zeit_zw[2])
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 								wetterdata.append(data_zw)
 
 						if os.path.splitext(file)[0].split('-')[0].lower() == datum:
@@ -96,7 +135,11 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 									for j in range(data_zw.shape[0]):
 										bctime = time.gmtime(data_zw[j,0]-sp2_timeshift)
 										data_zw[j,0] = bctime[3]*3600+bctime[4]*60+bctime[5]
+<<<<<<< HEAD
 									bcdata.append(data_zw)		
+=======
+									bcdata.append(data_zw)
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 								except: print os.path.join(path,file)+" has wrong format"
 							if  os.path.splitext(file)[0].split('-')[-1] != 'BCData' and os.path.splitext(file)[0].split('-')[-1] != 'HKData':
 								# datum-01.txt
@@ -118,7 +161,11 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 			logfile = open(string.join(['../log/',datum,'_log.txt'],''),'w')
 			logfile.write(string.join(['Data measured the',datum,'\n'],' '))
 
+<<<<<<< HEAD
 	# --------------------------------------------- 		b)	--------------------------------------------	
+=======
+	# --------------------------------------------- 		b)	--------------------------------------------
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	# Neue Zeitachse
 			minis,maxis=[],[]
 			for i in range(len(labels)):
@@ -129,6 +176,7 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 	# erstellt einheitliche Zeitachse
 			time_array = np.arange(np.nanmin(minis),np.nanmax(maxis)+5,1)
 
+<<<<<<< HEAD
 		
 	# --------------------------------------------- 		c)	--------------------------------------------	
 	# erstellt leere Matrix in die Messwerte geschrieben werden
@@ -139,6 +187,18 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 			if time_array.shape[0] <100: 
 				print '/!\ eine Messdatei ist entweder nicht vorhanden oder ist grob unlesbar!'
 				return None			
+=======
+
+	# --------------------------------------------- 		c)	--------------------------------------------
+	# erstellt leere Matrix in die Messwerte geschrieben werden
+			data = nans(time_array.shape[0], position[-1]+len(traces[-1]))
+	# fuegt Zeitspalten in die Matrix ein
+			data[:,0] = time_array
+			data[:,1] = time_array
+			if time_array.shape[0] <100:
+				print '/!\ eine Messdatei ist entweder nicht vorhanden oder ist grob unlesbar!'
+				return None
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 			logfile.write( string.join(['%d seconds measuring time going from'%(time_array[-1]-time_array[0]),time.strftime('%H:%M:%S',time.gmtime(time_array[0] )),'to',time.strftime('%H:%M:%S',time.gmtime(time_array[-1] )),'\n'],' '))
 	# fuegt Messwerte in die Matrix ein
 			for k in range(len(labels)):
@@ -146,6 +206,7 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 				for j in range(len(datas[k])):																													# fuer alle Datein eines Messgeraets
 					if fill_types[k][0]!=None:
 						for no in range(len(fill_types[k])):																									# fill_typ durch nan ersetzen
+<<<<<<< HEAD
 							datas[k][j][datas[k][j]==fill_types[k][no]]=np.nan																
 					match = np.nanargmin(np.abs(time_array[:] - datas[k][j][0,0]))							# sucht Anfangszeit in Zeitspalte
 					counter = match+len(datas[k][j])
@@ -154,6 +215,16 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 							if np.isnan(match)!=True:				
 								if sample_flow[k]==1:		data[match:counter,position[k]+i] = datas[k][j][:,i]	#falls sekuendlich wird ein Block eingefuegt
 								if sample_flow[k]==None:								
+=======
+							datas[k][j][datas[k][j]==fill_types[k][no]]=np.nan
+					match = np.nanargmin(np.abs(time_array[:] - datas[k][j][0,0]))							# sucht Anfangszeit in Zeitspalte
+					counter = match+len(datas[k][j])
+					try:
+						for i in range(1,len(traces[k])):
+							if np.isnan(match)!=True:
+								if sample_flow[k]==1:		data[match:counter,position[k]+i] = datas[k][j][:,i]	#falls sekuendlich wird ein Block eingefuegt
+								if sample_flow[k]==None:
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 									for u in range(datas[k][j].shape[0]):																							#falls nicht werden Messwerte einzeln eingefuegt
 										match_zw = np.nanargmin(np.abs(time_array[:] - datas[k][j][u,0]))
 										data[match_zw,position[k]+i] = datas[k][j][u,i]
@@ -162,6 +233,7 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 					print name_list[k][j].split('/')[-1]
 
 	# messpunkte vor abflug und nach Landung loeschen
+<<<<<<< HEAD
 			try:	
 				abflug,landung=0,0
 				#flug=open("../log/Netcare 2014_Polar 6_start and stop times.csv","r").readlines()
@@ -171,6 +243,16 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 						abflug,landung=int(flug[i].split('\t')[3]),int(flug[i].split('\t')[5])   
 						logfile.write(string.join(["\nAbflug: ",flug[i].split('\t')[2]	,"\n"],''))		
 						logfile.write(string.join(["Landung: ",flug[i].split('\t')[4]	,"\n"],''))		
+=======
+			try:
+				abflug,landung=0,0
+				flug=open("../log/Netcare 2014_Polar 6_start and stop times.csv","r").readlines()
+				for i in range(11,len(flug),1):
+					if datum=="%04d%02d%02d"%(int(flug[i].split('\t')[1].split('.')[2]),int(flug[i].split('\t')[1].split('.')[1]),int(flug[i].split('\t')[1].split('.')[0])):
+						abflug,landung=int(flug[i].split('\t')[3]),int(flug[i].split('\t')[5])
+						logfile.write(string.join(["\nAbflug: ",flug[i].split('\t')[2]	,"\n"],''))
+						logfile.write(string.join(["Landung: ",flug[i].split('\t')[4]	,"\n"],''))
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 				if abflug==0 or landung==0: logfile.write("\n /!\ keine Informationen ueber Abflugszeit oder Landezeit gefunden!\n")
 				else: 	data=data[np.nanargmin(abs(data[:,0]-abflug)):np.nanargmin(abs(data[:,0]-landung))+1]
 				logfile.write( string.join(['\nMeasurement Data exists from', time.strftime('%H:%M:%S',time.gmtime(data[0,0] )), 'to', time.strftime('%H:%M:%S',time.gmtime(data[-1,0] ))],' ')	)
@@ -178,18 +260,31 @@ def einlesen(datum_list,pfad,sp2_timeshift,sp1a_timeshift,optionen_var,kampagne)
 			logfile.close()
 
 	# Prozentsatz an Incandescence Teilchen
+<<<<<<< HEAD
 			special = nans(data.shape[0],1)				
+=======
+			special = nans(data.shape[0],1)
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 			for i in range(special.shape[0]):
 				if data[i,14] > 0.00001: special[i] = data[i,4]/data[i,14]*100
 			data=np.hstack((data,special))
 			text_schreiben(data,datum)
 
+<<<<<<< HEAD
 	# --------------------------------------------- 		d)	--------------------------------------------	
 	# schreibt die erstellte matrix in verschiedene Dateiformate
 		if optionen_var[0]!=1:	data=np.loadtxt(string.join(['../txt/',datum,'_data.txt'],''),skiprows=1)
 		if optionen_var[1]==1:	netcdf_schreiben(data[:,:],string.join(['../netcdf/',datum,'.nc'],''))
 		if optionen_var[2]==1:	icartt_sp2_schreiben(data[:,:],datum,kampagne)
 		if optionen_var[3]==1:	icartt_sp1a_schreiben(data[:,:],datum,kampagne)
+=======
+	# --------------------------------------------- 		d)	--------------------------------------------
+	# schreibt die erstellte matrix in verschiedene Dateiformate
+		if optionen_var[0]!=1:	data=np.loadtxt(string.join(['../txt/',datum,'_data.txt'],''),skiprows=1)
+		if optionen_var[1]==1:	netcdf_schreiben(data[:,:],string.join(['../netcdf/',datum,'.nc'],''))
+		if optionen_var[2]==1:	icartt_sp2_schreiben(data[:,:],datum)
+		if optionen_var[3]==1:	icartt_sp1a_schreiben(data[:,:],datum)
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 		if optionen_var[4]==1:	model_schreiben(datum,data[:,:],string.join(['../model_30s/','k',datum,'_30sec_final.txt'],''))
 		print datum, 'gelesen in %d s'%(time.clock()-start)
 	return data
@@ -204,6 +299,7 @@ def text_schreiben(data,datum):
 	txt.close()
 
 # --------------------------------------------- 		ICARTT SP2	--------------------------------------------
+<<<<<<< HEAD
 def icartt_sp2_header(datum,kampagne):
 	#h=open('speicher/BC_Polar6_201407xx_R0-header.txt','r').read().split('\n')
 	h=open(kampagne.icartt_sp2,'r').read().split('\n')
@@ -217,11 +313,26 @@ def icartt_sp2_data(data_original):
 	data=np.empty((data_original.shape[0],2))
 	data[:]=np.nan
 	index_list=[0,5]
+=======
+def icartt_sp2_header(datum):
+	h=open('speicher/BC_Polar6_201407xx_R0-header.txt','r').read().split('\n')
+	h[6]=string.join([string.join(list(datum)[0:4],''),',',string.join(list(datum)[4:6],''),',',string.join(list(datum)[6:8],''),', ',time.strftime("%Y, %m, %d")],'')
+	for i in range(len(h)): icartt.write(string.join([h[i],'\n'],''))
+	return h[11]
+
+def icartt_sp2_data(data_original):
+	global fill_typ
+	fill_typ=np.nan
+	data=np.empty((data_original.shape[0],2))
+	data[:]=np.nan
+	index_list=[0,9]
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	for i in range(len(index_list)):
 		data[:,i]=data_original[:,index_list[i]]
 	np.savetxt(icartt,data,fmt=['%d','%.5f'],delimiter=",",newline="\n")
 	return data
 
+<<<<<<< HEAD
 def icartt_sp2_schreiben(data_original,datum,kampagne):
 	global icartt
 	name=string.join(['../icartt/','SP2_',datum,'.ict'],'')
@@ -246,6 +357,32 @@ def icartt_sp1a_header(datum,kampagne):
 def icartt_sp1a_data(data_original):
 	global fill_typ
 	fill_typ=np.nan	
+=======
+def icartt_sp2_schreiben(data_original,datum):
+	global icartt
+	name=string.join(['../icartt/','SP2_Polar6_',datum,'_R1.ict'],'')
+	icartt=open(name,'w')
+	fill_neu = icartt_sp2_header(datum)
+	icartt_sp2_data(data_original)
+	icartt.close()
+	punkt=open(name,'r').read()
+	punkt2=punkt.replace("0.00000",fill_neu)
+	komma=open(name,'w')
+	komma.write(punkt2.replace("nan",fill_neu))
+	komma.close()
+
+# --------------------------------------------- 		ICARTT SP1A	--------------------------------------------
+def icartt_sp1a_header(datum):
+	h=open('speicher/AOD_Polar6_201407xx_R0-header-HS.txt','r').read().split('\n')
+	h[6]=string.join([string.join(list(datum)[0:4],''),',',string.join(list(datum)[4:6],''),',',string.join(list(datum)[6:8],''),', ',time.strftime("%Y, %m, %d")],'')
+	for i in range(len(h)-1): icartt.write(string.join([h[i],'\n'],''))
+	icartt.write(string.join([h[i+1]],''))
+	return h[11].split(",")[0]
+
+def icartt_sp1a_data(data_original):
+	global fill_typ
+	fill_typ=np.nan
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	index_list=[0,23,24,26,28]
 	data=np.empty((data_original.shape[0],len(index_list)))
 	data[:]=np.nan
@@ -255,12 +392,20 @@ def icartt_sp1a_data(data_original):
 	np.savetxt(icartt,data,fmt=['%d','%.5f','%.5f','%.5f','%.5f'],delimiter=",",newline="\n")
 	return data
 
+<<<<<<< HEAD
 def icartt_sp1a_schreiben(data_original,datum,kampagne):
+=======
+def icartt_sp1a_schreiben(data_original,datum):
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	global icartt
 	#SP1A_Polar6_20140704_R0.ict
 	name=string.join(['../icartt/','SP1A_Polar6_',datum,'_R0.ict'],'')
 	icartt=open(name,'w')
+<<<<<<< HEAD
 	fill_neu = icartt_sp1a_header(datum,kampagne)
+=======
+	fill_neu = icartt_sp1a_header(datum)
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	icartt_sp1a_data(data_original)
 	icartt.close()
 	ohne_fill=open(name,'r').read()
@@ -269,18 +414,30 @@ def icartt_sp1a_schreiben(data_original,datum,kampagne):
 	mit_fill.close()
 
 
+<<<<<<< HEAD
 # ---------------------------------------------30s fuer Modellierer--------------------------------------------	
+=======
+# ---------------------------------------------30s fuer Modellierer--------------------------------------------
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 def model_schreiben(datum,data_original,name):
 	global fill_typ
 	gemittelt,fill_typ=30,np.nan
 	fill_zw=np.empty(data_original.shape[0])
 	fill_zw[:]=np.nan
+<<<<<<< HEAD
 	fill=mittelung(fill_zw[:],gemittelt)	
+=======
+	fill=mittelung(fill_zw[:],gemittelt)
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	data=mittelung(datetime.datetime.strptime(datum,'%Y%m%d').timetuple().tm_yday+data_original[:,0]/(24*60*60),gemittelt)
 	data=np.hstack((data,mittelung(data_original[:,0],gemittelt)))
 	data=np.hstack((data,fill[:]))
 	data=np.hstack((data,fill[:]))
+<<<<<<< HEAD
 	for i in range(len(data)):	
+=======
+	for i in range(len(data)):
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 		for j in range(2):
 			a=data_original[i*gemittelt:(i+1)*gemittelt,45+j]
 			if np.isnan(a[a.argsort()][0])==True:
@@ -299,7 +456,11 @@ def model_schreiben(datum,data_original,name):
 	komma.write(punkt.replace(".",",").replace("nan","-999,9"))
 	komma.close()
 
+<<<<<<< HEAD
 # ---------------------------------------------		netcdf		--------------------------------------------	
+=======
+# ---------------------------------------------		netcdf		--------------------------------------------
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 def netcdf_schreiben(data,name):
 	f = netcdf.netcdf_file(name,'w')
 	f.history = name
@@ -318,7 +479,11 @@ def netcdf_schreiben(data,name):
 	f.close()
 
 
+<<<<<<< HEAD
 def manuel(datum_list):	# 
+=======
+def manuel(datum_list):	#
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 	rohdaten=1					#	1-> rohdaten werden eingelesen und als .txt abgespeichert, 0-> .txt Datei wird geoeffnet
 	netcdf=1					#	1-> netcdf wird abgelegt
 	icartt_sp2=1			#
@@ -331,4 +496,8 @@ def manuel(datum_list):	#
 #manuel(["20140708","20140710"])
 
 
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0

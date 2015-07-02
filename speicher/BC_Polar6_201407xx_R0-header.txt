@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 33, 1001
+=======
+34, 1001
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 Herber, Andreas; Schulz, Hannes
 Alfred-Wegener-Institute, Bremerhaven, Germany
 rBC mass concentration from SP2 (single particle soot photometer)
@@ -9,25 +13,47 @@ NETCARE Polar 6 Campaign 2014
 Time_UTC, seconds
 1
 1
+<<<<<<< HEAD
 -99
 BC_mass_conc, ug/cm3
 0
 18
+=======
+-9999
+BC_mass_conc, ug/m3
+0
+19
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 PI_CONTACT_INFO: Address: Bussestrasse 24, D-27570 Bremerhaven, email: andreas.herber@awi.de; hannes.schulz@awi.de
 PLATFORM: Polar 6
 LOCATION: Aircraft location data in AIMMS_07041940Polar6_20140704_R0.ict file on FTP server (particle.chem-eng.utoronto.ca)
 ASSOCIATED_DATA: N/A
 INSTRUMENT_INFO: Refractory black carbon aerosol measurements based on laser induced incandescence
+<<<<<<< HEAD
 DATA_INFO: Units are ug/cm3
+=======
+DATA_INFO: Units are ug/m3
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 UNCERTAINTY: TBD, preliminary data
 ULOD_FLAG: -7777
 ULOD_VALUE: N/A
 LLOD_FLAG: -8888
+<<<<<<< HEAD
 LLOD_VALUE: 10 ng/m3 
+=======
+LLOD_VALUE: TBD
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
 DM_CONTACT_INFO: N/A
 PROJECT_INFO: NETCARE Polar 6 aircraft campaign in July 2014; Resolute Bay
 STIPULATIONS_ON_USE: Preliminary data! Use of these data requires prior approval from PI
 OTHER_COMMENTS: N/A
+<<<<<<< HEAD
 REVISION: R0
 R0: Preliminary data
 Time_UTC, BC_mass_conc
+=======
+REVISION: R1
+R1: Preliminary data, updated header information, corrected mass concentration
+R0: Preliminary data, initial release
+Time_UTC, BC_mass_conc
+>>>>>>> 56f9d14ed3661b0ae92d935913222e0da31c3cd0
