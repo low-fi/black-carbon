@@ -23,7 +23,7 @@ def click_links(event):
 	global start
 	start=(event.x, event.y)
 
-
+	
 def drop_links(event):
 	global ende
 	initi()
@@ -49,7 +49,7 @@ def drop_links(event):
 def click_rechts(event):
 	global start
 	start=(event.x, event.y)
-
+	
 def drop_rechts(event):
 	global ende
 	ende=(event.x,event.y)
@@ -92,8 +92,8 @@ def achsen_begrenzung():
 
 def ausschnitt_plotten(root,datum,plots,spuren,i):
 	global plo
-	plots[i].zeit_start=plo.zeit_start
-	plots[i].zeit_stop=plo.zeit_stop
+	plots[i].zeit_start=plo.zeit_start	
+	plots[i].zeit_stop=plo.zeit_stop	
 	plot_bearbeitung(root,datum,plots,plots[i],spuren)
 	sys.exit()
 
@@ -102,8 +102,8 @@ def plot_speichern(root,datum,plots,plot,spuren):
 	zumhauptmenu()
 
 def zumhauptmenu():
-	root2.destroy()
-	os.system("python menu.py")
+	root2.destroy()	
+	os.system("python menu.py")	
 	sys.exit()
 
 def plot_bearbeitung(root,datum,plots,plot,spuren):
@@ -113,12 +113,12 @@ def plot_bearbeitung(root,datum,plots,plot,spuren):
 	plo=plot
 	try:root.destroy()
 	except:pass
-	root2 = tk.Tk()
+	root2 = tk.Tk()  
 	root2.geometry('1000x800+800+400')
 	root2.grid()
 
 	canvasFig=pltlib.figure(1)
-	Fig,axen,canvas= plotten(["20150411"],plot,spuren)
+	Fig,axen,canvas= plotten(["20140708"],plot,spuren)
 	canvas1 = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=root2)
 	canvas0=canvas1.get_tk_widget()
 
@@ -130,7 +130,7 @@ def plot_bearbeitung(root,datum,plots,plot,spuren):
 	canvas0.grid(row=2,column=0,rowspan=7,columnspan=7)
 	canvas1.show()
 
-	breite,hoehe =canvas0.winfo_width(),canvas0.winfo_height()
+	breite,hoehe =canvas0.winfo_width(),canvas0.winfo_height()  
 
 	pos_info=[]
 	for j in range(len(axen)):
